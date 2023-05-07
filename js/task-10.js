@@ -16,15 +16,21 @@ inputEl.addEventListener('input', (event) => {
 amountOfBoxes = event.currentTarget.value;
 });
 function createBoxes() {
-  const boxes = [];
-  for (let i = 0; i < amountOfBoxes; i += 1) {
+  if (amountOfBoxes >= Number(inputEl.min) && amountOfBoxes <= Number(inputEl.max)) {
+    const boxes = [];
+  for (let i = 0; i < amountOfBoxes; i += Number(inputEl.step)) {
     const boxSize = 30 + (10 * i);
     const box = `<div style="background-color: ${getRandomHexColor()}; width: ${boxSize}px; height: ${boxSize}px;"></div>`;
     boxes.push(box);
+    console.log(inputEl.step)
   }
   boxesContainer.insertAdjacentHTML("beforeend", boxes.join(""));
+  } else {
+    alert(`число має бути в проміжку від ${inputEl.min} до ${inputEl.max}`)
+  }
 }
 btnCreate.addEventListener('click', createBoxes);
 btnDestroy.addEventListener('click', () => {
   boxesContainer.innerHTML = ""
+  inputEl.value = ""
 })

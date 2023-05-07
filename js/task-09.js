@@ -3,15 +3,13 @@ function getRandomHexColor() {
     .toString(16)
     .padStart(6, 0)}`;
 }
-const showCurrentBodyColor = () => {
-  currentColorEL.textContent = body.getAttribute("style").slice(18, body.getAttribute("style").length)
-  console.log(body.getAttribute("style"))
-}
+const color = getRandomHexColor();
 
 
 const bodyColorChanger = () => {
-  body.style.backgroundColor = getRandomHexColor();
-  showCurrentBodyColor()
+  const color = getRandomHexColor();
+  body.style.backgroundColor = color;
+  currentColorEL.textContent = color;
 }
 
 const currentColorEL = document.querySelector('.color')
